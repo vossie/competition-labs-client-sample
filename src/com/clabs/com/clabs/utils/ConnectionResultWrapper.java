@@ -6,6 +6,8 @@ public class ConnectionResultWrapper {
 
     private int httpStatusCode;
 
+    private String contentType;
+
     public ConnectionResultWrapper setBody(String body) {
         this.body = body;
 
@@ -18,11 +20,24 @@ public class ConnectionResultWrapper {
         return this;
     }
 
+    public ConnectionResultWrapper setContentType(String contentType) {
+        this.contentType = contentType;
+        return this;
+    }
+
     public String getBody() {
         return body;
     }
 
     public int getHttpStatusCode() {
         return httpStatusCode;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public boolean isJson() {
+        return getContentType().toLowerCase().contains("json");
     }
 }

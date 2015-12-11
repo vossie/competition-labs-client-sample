@@ -90,7 +90,10 @@ public class Connection {
         }
         in.close();
 
-        return new ConnectionResultWrapper().setBody(response.toString()).setHttpStatusCode(responseCode);
+        return new ConnectionResultWrapper()
+                .setBody(response.toString())
+                .setHttpStatusCode(responseCode)
+                .setContentType(con.getContentType());
     }
 
     // HTTP POST request
@@ -147,6 +150,9 @@ public class Connection {
         }
         in.close();
 
-        return new ConnectionResultWrapper().setBody(response.toString()).setHttpStatusCode(responseCode);
+        return new ConnectionResultWrapper()
+                .setBody(response.toString())
+                .setHttpStatusCode(responseCode)
+                .setContentType(con.getContentType());
     }
 }

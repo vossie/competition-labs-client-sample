@@ -5,7 +5,6 @@ import com.clabs.com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.com.clabs.utils.Json;
 import com.clabs.models.Response;
 import com.clabs.models.Score;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -34,7 +33,7 @@ public class Scores {
         Response<ArrayList<Score>> count = GetACountOfAllScores(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return new Gson().fromJson(out.getBody(), responseTypeListScores);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -48,7 +47,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return new Gson().fromJson(out.getBody(), responseTypeListScores);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -63,7 +62,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "externalScoreRefId=" + externalScoreRefId);
 
-        return new Gson().fromJson(out.getBody(), responseTypeListScores);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -95,7 +94,7 @@ public class Scores {
         String body = Json.GSON.toJson(scores);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return new Gson().fromJson(out.getBody(), responseTypeBoolean);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -113,7 +112,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.GSON.fromJson(out.getBody(), responseTypeScore);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeScore);
     }
 
     /**
