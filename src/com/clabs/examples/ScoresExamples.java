@@ -4,12 +4,10 @@ import com.clabs.models.Response;
 import com.clabs.models.Score;
 import com.clabs.stories.Scores;
 import com.clabs.utils.Connection;
-import com.clabs.utils.ConnectionResultWrapper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 abstract public class ScoresExamples extends Common{
 
@@ -41,7 +39,7 @@ abstract public class ScoresExamples extends Common{
             Thread.sleep(200);
 
             // 6. Delete the records we just inserted
-            List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByMyId);
+            //List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByMyId);
 
         } catch (Exception e) {
             e.printStackTrace();

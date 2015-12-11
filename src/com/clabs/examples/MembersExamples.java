@@ -4,7 +4,6 @@ import com.clabs.models.Member;
 import com.clabs.models.Response;
 import com.clabs.stories.Members;
 import com.clabs.utils.Connection;
-import com.clabs.utils.ConnectionResultWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,7 @@ abstract public class MembersExamples extends Common {
             Thread.sleep(200);
 
             // 7. Delete the records we just inserted
-            List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
+            //List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
 
         } catch (Exception e) {
             e.printStackTrace();

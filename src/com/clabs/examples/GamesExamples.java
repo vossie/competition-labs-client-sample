@@ -1,13 +1,11 @@
 package com.clabs.examples;
 
-import com.clabs.utils.Connection;
-import com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.models.Game;
 import com.clabs.models.Response;
 import com.clabs.stories.Games;
+import com.clabs.utils.Connection;
 
 import java.util.ArrayList;
-import java.util.List;
 
 abstract public class GamesExamples extends Common {
 
@@ -47,7 +45,7 @@ abstract public class GamesExamples extends Common {
             Thread.sleep(200);
 
             // 7. Delete the records we just inserted
-            List<ConnectionResultWrapper> deletedResponse = Games.PermanentlyDeleteListOfGames(connection, gamesByMyId);
+            //List<ConnectionResultWrapper> deletedResponse = Games.PermanentlyDeleteListOfGames(connection, gamesByMyId);
 
         } catch (Exception e) {
             e.printStackTrace();
