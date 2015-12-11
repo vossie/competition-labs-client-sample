@@ -1,4 +1,4 @@
-import com.clabs.com.clabs.utils.Connection;
+import com.clabs.utils.Connection;
 import com.clabs.examples.GamesExamples;
 import com.clabs.examples.MembersExamples;
 import com.clabs.examples.ScoresExamples;
