@@ -5,7 +5,6 @@ import com.clabs.com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.com.clabs.utils.Json;
 import com.clabs.models.Member;
 import com.clabs.models.Response;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -33,7 +32,7 @@ public class Members {
         Response<ArrayList<Member>> count = GetACountOfAllMembers(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return new Gson().fromJson(out.getBody(), responseTypeListMembers);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -46,7 +45,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return new Gson().fromJson(out.getBody(), responseTypeListMembers);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -60,7 +59,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "externalRefId="+externalMemberRefId);
 
-        return new Gson().fromJson(out.getBody(), responseTypeListMembers);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -90,7 +89,7 @@ public class Members {
         String body = Json.GSON.toJson(members);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return new Gson().fromJson(out.getBody(), responseTypeBoolean);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -107,7 +106,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.GSON.fromJson(out.getBody(), responseTypeMember);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeMember);
     }
 
     /**

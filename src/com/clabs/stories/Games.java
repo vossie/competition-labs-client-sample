@@ -5,7 +5,6 @@ import com.clabs.com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.com.clabs.utils.Json;
 import com.clabs.models.Game;
 import com.clabs.models.Response;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -33,7 +32,7 @@ public class Games {
         Response<ArrayList<Game>> count = GetACountOfAllGames(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return new Gson().fromJson(out.getBody(), responseTypeListGames);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
     }
 
     /**
@@ -46,7 +45,7 @@ public class Games {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return new Gson().fromJson(out.getBody(), responseTypeListGames);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
     }
 
     /**
@@ -60,7 +59,7 @@ public class Games {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "externalGameRefId="+externalGameRefId);
 
-        return new Gson().fromJson(out.getBody(), responseTypeListGames);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
     }
 
     /**
@@ -90,7 +89,7 @@ public class Games {
         String body = Json.GSON.toJson(games);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return new Gson().fromJson(out.getBody(), responseTypeBoolean);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -107,7 +106,7 @@ public class Games {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.GSON.fromJson(out.getBody(), responseTypeGame);
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeGame);
     }
 
     /**
