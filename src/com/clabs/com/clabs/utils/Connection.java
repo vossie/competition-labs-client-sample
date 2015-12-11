@@ -70,11 +70,18 @@ public class Connection {
         con.setRequestProperty("X-API-KEY",  apiKey);
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending '"+method+"' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
+        System.out.println("\n[Sending] '"+method+"' request to URL : " + url);
+        System.out.println("[Response] Code : " + responseCode);
 
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
+        BufferedReader in;
+
+        if (con.getResponseCode() == 200) {
+            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        } else {
+            /* error from server */
+            in = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+        }
+
         String inputLine;
         StringBuffer response = new StringBuffer();
 
@@ -120,11 +127,18 @@ public class Connection {
         wr.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending '"+method+"' request to URL : " + toUrl(resourcePath));
-        System.out.println("Response Code : " + responseCode);
+        System.out.println("\n[Sending] '"+method+"' request to URL : " + toUrl(resourcePath));
+        System.out.println("[Response] Code : " + responseCode);
 
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
+        BufferedReader in;
+
+        if (con.getResponseCode() == 200) {
+            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        } else {
+            /* error from server */
+            in = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+        }
+
         String inputLine;
         StringBuffer response = new StringBuffer();
 

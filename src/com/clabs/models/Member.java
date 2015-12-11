@@ -24,7 +24,7 @@ final public class Member {
 
     public List<String> groups;
 
-    public Map<String,String> metadata;
+    public Map<String, List<String>> metadata;
 
     public Date created;
 
@@ -53,7 +53,7 @@ final public class Member {
         return this;
     }
 
-    public Member setMetadata(Map<String, String> metadata) {
+    public Member setMetadata(Map<String, List<String>> metadata) {
         this.metadata = metadata;
         return this;
     }

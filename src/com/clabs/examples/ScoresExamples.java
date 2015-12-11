@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-abstract public class ScoresExamples {
+abstract public class ScoresExamples extends Common{
 
     public static void example(Connection connection) {
         try {
@@ -24,21 +24,25 @@ abstract public class ScoresExamples {
                     .setTransactionTimestamp(new Date(LocalDate.now().toEpochDay()));
 
             Response<Boolean> insertedScoreResponse = Scores.InsertScore(connection, sampleScore);
+            printErrorsFromResponse(insertedScoreResponse);
 
             // 2. Allow the remote system to propagate the data to the edge nodes
             Thread.sleep(200);
 
             // 3. Get all the scores I have uploaded.
             Response<ArrayList<Score>> scores = Scores.GetListOfAllMyScores(connection);
+            printErrorsFromResponse(scores);
 
             // 4. Get a list of scores based on my external reference id.
             Response<ArrayList<Score>> scoresByMyId = Scores.GetScoresByExternalRefId(connection, "-1");
+            printErrorsFromResponse(scoresByMyId);
 
             // 5. Allow the remote system to propagate the data to the edge nodes
             Thread.sleep(200);
 
             // 6. Delete the records we just inserted
             List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByMyId);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

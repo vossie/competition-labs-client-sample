@@ -7,4 +7,9 @@ final public class Error {
     public Integer code;
 
     public Integer status;
+
+    @Override
+    public String toString() {
+        return "[Error] status:" + status + ", code: " + code + ", message: " + message;
+    }
 }

@@ -9,7 +9,7 @@ import com.clabs.stories.Games;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class GamesExamples {
+abstract public class GamesExamples extends Common {
 
     public static void example(Connection connection) {
         try {
@@ -23,20 +23,24 @@ abstract public class GamesExamples {
                     .setAdjustmentFactor("2")
                     .setPointsStyle("HighestWins");
 
-            Games.InsertGame(connection, sampleGame);
+            Response insertedGamesResponse = Games.InsertGame(connection, sampleGame);
+            printErrorsFromResponse(insertedGamesResponse);
 
             // 2. Allow the remote system to propagate the data to the edge nodes
             Thread.sleep(200);
 
             // 3. Get all the games I have uploaded.
             Response<ArrayList<Game>> games = Games.GetListOfAllMyGames(connection);
+            printErrorsFromResponse(games);
 
             // 4. Get a list of games based on my external reference id.
             Response<ArrayList<Game>> gamesByMyId = Games.GetGamesByExternalRefId(connection,"-1");
+            printErrorsFromResponse(gamesByMyId);
 
             // 5. Update and existing records
             for (int i=0; i<gamesByMyId.data.size(); i++){
-                Games.UpdateGameById(connection, gamesByMyId.data.get(i).setDescription("Updated to " + i));
+                Response r = Games.UpdateGameById(connection, gamesByMyId.data.get(i).setDescription("Updated to " + i));
+                printErrorsFromResponse(r);
             }
 
             // 6. Allow the remote system to propagate the data to the edge nodes
