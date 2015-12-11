@@ -1,4 +1,4 @@
-package com.clabs.com.clabs.utils;
+package com.clabs.utils;
 
 public class ConnectionResultWrapper {
 

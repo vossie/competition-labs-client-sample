@@ -1,7 +1,7 @@
 package com.clabs.examples;
 
-import com.clabs.com.clabs.utils.Connection;
-import com.clabs.com.clabs.utils.ConnectionResultWrapper;
+import com.clabs.utils.Connection;
+import com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.models.Response;
 import com.clabs.models.Score;
 import com.clabs.stories.Scores;

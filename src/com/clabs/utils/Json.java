@@ -1,4 +1,4 @@
-package com.clabs.com.clabs.utils;
+package com.clabs.utils;
 
 import com.clabs.models.Response;
 import com.google.gson.Gson;

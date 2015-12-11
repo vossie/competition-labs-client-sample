@@ -1,8 +1,8 @@
 package com.clabs.stories;
 
-import com.clabs.com.clabs.utils.Connection;
-import com.clabs.com.clabs.utils.ConnectionResultWrapper;
-import com.clabs.com.clabs.utils.Json;
+import com.clabs.utils.Connection;
+import com.clabs.utils.ConnectionResultWrapper;
+import com.clabs.utils.Json;
 import com.clabs.models.Response;
 import com.clabs.models.Score;
 import com.google.gson.reflect.TypeToken;
