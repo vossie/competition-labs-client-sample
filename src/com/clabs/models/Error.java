@@ -18,7 +18,7 @@ final public class Error {
 
         if(children!=null)
             for(Error child: children)
-                out = out + "\n   [Child]" + child.toString();
+                out = out + "\n> [Child]" + child.toString();
 
         return out;
     }
