@@ -16,9 +16,9 @@ final public class Game {
 
     public String description;
 
-    public String adjustmentFactor;
+    public Float adjustmentFactor;
 
-    public Integer externalGameRefId;
+    public String gameRefId;
 
     public Date created;
 
@@ -46,13 +46,13 @@ final public class Game {
         return this;
     }
 
-    public Game setAdjustmentFactor(String adjustmentFactor) {
+    public Game setAdjustmentFactor(Float adjustmentFactor) {
         this.adjustmentFactor = adjustmentFactor;
         return this;
     }
 
-    public Game setExternalGameRefId(Integer externalGameRefId) {
-        this.externalGameRefId = externalGameRefId;
+    public Game setGameRefId(String externalGameRefId) {
+        this.gameRefId = externalGameRefId;
         return this;
     }
 }

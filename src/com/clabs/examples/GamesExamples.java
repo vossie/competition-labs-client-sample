@@ -16,11 +16,11 @@ abstract public class GamesExamples extends Common {
 
             // 1. Add a new game
             Game sampleGame = new Game()
-                    .setExternalGameRefId(-1)
+                    .setGameRefId("-1")
                     .setName("Test Game")
                     .setDescription("Test game")
                     .setGameType("slot")
-                    .setAdjustmentFactor("2")
+                    .setAdjustmentFactor(2f)
                     .setPointsStyle("HighestWins");
 
             Response insertedGamesResponse = Games.InsertGame(connection, sampleGame);

@@ -1,10 +1,10 @@
 package com.clabs.examples;
 
-import com.clabs.utils.Connection;
-import com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.models.Response;
 import com.clabs.models.Score;
 import com.clabs.stories.Scores;
+import com.clabs.utils.Connection;
+import com.clabs.utils.ConnectionResultWrapper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ abstract public class ScoresExamples extends Common{
         try {
             // 1. Add a new score
             Score sampleScore = new Score()
-                    .setExternalScoreRefId(-1)
-                    .setExternalGameRefId(1)
-                    .setExternalMemberRefId(1)
+                    .setScoreRefId("-1")
+                    .setGameRefId("-1")
+                    .setMemberRefId("-1")
                     .setSourceValue(2.5f)
                     .setTransactionTimestamp(new Date(LocalDate.now().toEpochDay()));
 

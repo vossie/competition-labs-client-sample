@@ -57,7 +57,7 @@ public class Members {
      */
     public static Response<ArrayList<Member>> GetMembersByExternalRefId(Connection connection, String externalMemberRefId) throws Exception {
 
-        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "externalRefId="+externalMemberRefId);
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "memberRefId="+externalMemberRefId);
 
         return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
     }

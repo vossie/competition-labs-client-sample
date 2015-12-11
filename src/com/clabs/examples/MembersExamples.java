@@ -1,15 +1,13 @@
 package com.clabs.examples;
 
-import com.clabs.utils.Connection;
-import com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.models.Member;
 import com.clabs.models.Response;
 import com.clabs.stories.Members;
+import com.clabs.utils.Connection;
+import com.clabs.utils.ConnectionResultWrapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 abstract public class MembersExamples extends Common {
 
@@ -20,19 +18,18 @@ abstract public class MembersExamples extends Common {
             List<String> group = new ArrayList<String>();
             group.add("VIP-Test");
 
-            Map<String,List<String>> memberMetaData = new HashMap<String, List<String>>();
-            List<String> memberMetaDataVal = new ArrayList<String>();
-
-            memberMetaDataVal.add("someValue");
-            memberMetaData.put("someKey",memberMetaDataVal);
+//            Map<String,List<String>> memberMetaData = new HashMap<String, List<String>>();
+//            List<String> memberMetaDataVal = new ArrayList<String>();
+//
+//            memberMetaDataVal.add("someValue");
+//            memberMetaData.put("someKey",memberMetaDataVal);
 
 
             Member sampleMember = new Member()
                     .setMemberType("Individual")
-                    .setExternalRefId(-1)
+                    .setMemberRefId("-1")
                     .setGroups(group)
-                    .setName("Test user")
-                    .setMetadata(memberMetaData);
+                    .setName("Test user");
 
             Response<Boolean> insertedMemberResponse = Members.InsertMember(connection, sampleMember);
             printErrorsFromResponse(insertedMemberResponse);

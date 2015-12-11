@@ -57,7 +57,7 @@ public class Games {
      */
     public static Response<ArrayList<Game>> GetGamesByExternalRefId(Connection connection, String externalGameRefId) throws Exception {
 
-        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "externalGameRefId="+externalGameRefId);
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "gameRefId="+externalGameRefId);
 
         return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
     }

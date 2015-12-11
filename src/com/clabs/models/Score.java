@@ -18,13 +18,13 @@ final public class Score {
 
     public Float sourceValue;
 
-    public Float adjustedValue;
+    public Float points;
 
-    public Integer externalMemberRefId;
+    public String memberRefId;
 
-    public Integer externalGameRefId;
+    public String gameRefId;
 
-    public Integer externalScoreRefId;
+    public String scoreRefId;
 
     public Date transactionTimestamp;
 
@@ -55,18 +55,18 @@ final public class Score {
         return this;
     }
 
-    public Score setExternalMemberRefId(Integer externalMemberRefId) {
-        this.externalMemberRefId = externalMemberRefId;
+    public Score setMemberRefId(String memberRefId) {
+        this.memberRefId = memberRefId;
         return this;
     }
 
-    public Score setExternalGameRefId(Integer externalGameRefId) {
-        this.externalGameRefId = externalGameRefId;
+    public Score setGameRefId(String gameRefId) {
+        this.gameRefId = gameRefId;
         return this;
     }
 
-    public Score setExternalScoreRefId(Integer externalScoreRefId) {
-        this.externalScoreRefId = externalScoreRefId;
+    public Score setScoreRefId(String scoreRefId) {
+        this.scoreRefId = scoreRefId;
         return this;
     }
 

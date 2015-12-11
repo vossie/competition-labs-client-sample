@@ -60,7 +60,7 @@ public class Scores {
      */
     public static Response<ArrayList<Score>> GetScoresByExternalRefId(Connection connection, String externalScoreRefId) throws Exception {
 
-        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "externalScoreRefId=" + externalScoreRefId);
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "scoreRefId=" + externalScoreRefId);
 
         return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
     }

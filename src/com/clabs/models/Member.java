@@ -14,7 +14,7 @@ final public class Member {
 
     public String name;
 
-    public Integer externalRefId;
+    public String memberRefId;
 
     public String email;
 
@@ -38,8 +38,8 @@ final public class Member {
         return this;
     }
 
-    public Member setExternalRefId(Integer externalRefId) {
-        this.externalRefId = externalRefId;
+    public Member setMemberRefId(String memberRefId) {
+        this.memberRefId = memberRefId;
         return this;
     }
 
