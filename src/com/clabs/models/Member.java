@@ -16,8 +16,6 @@ final public class Member {
 
     public String memberRefId;
 
-    public String email;
-
     public String picture;
 
     public List<String> teamMembers;
