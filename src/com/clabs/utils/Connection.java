@@ -60,7 +60,12 @@ public class Connection {
         }
 
         URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        HttpURLConnection con;
+
+        if(url.startsWith("https"))
+            con = (HttpsURLConnection) obj.openConnection();
+        else
+            con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
         con.setRequestMethod(method);
@@ -109,8 +114,14 @@ public class Connection {
     // HTTP send with body
     public ConnectionResultWrapper sendWithBody(String method, String resourcePath, String body) throws Exception {
 
-        URL obj = new URL(toUrl(resourcePath));
-        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+        String url = toUrl(resourcePath);
+        URL obj = new URL(url);
+        HttpURLConnection con;
+
+        if(url.startsWith("https"))
+            con = (HttpsURLConnection) obj.openConnection();
+        else
+            con = (HttpURLConnection) obj.openConnection();
 
         con.setRequestMethod(method);
 
