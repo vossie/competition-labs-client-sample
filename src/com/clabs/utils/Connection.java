@@ -73,6 +73,7 @@ public class Connection {
         //add request header
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("X-API-KEY",  apiKey);
+        con.setRequestProperty("Accept-Encoding", "application/json");
 
         int responseCode = con.getResponseCode();
         System.out.println("\n[Sending] '"+method+"' request to URL : " + url);
@@ -130,6 +131,7 @@ public class Connection {
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
         con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Accept-Encoding", "application/json");
         con.setRequestProperty("Content-Length", Integer.toString(body.length()));
 
         // Send request
