@@ -32,7 +32,7 @@ public class Members {
         Response<ArrayList<Member>> count = GetACountOfAllMembers(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "memberRefId="+externalMemberRefId);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Members {
         String body = Json.GSON.toJson(members);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeMember);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeMember);
     }
 
     /**

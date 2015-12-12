@@ -33,7 +33,7 @@ public class Scores {
         Response<ArrayList<Score>> count = GetACountOfAllScores(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -47,7 +47,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -62,7 +62,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "scoreRefId=" + externalScoreRefId);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "memberRefId=" + externalMemberRefId);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -92,7 +92,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "gameRefId=" + externalGameRefId);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListScores);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Scores {
         String body = Json.GSON.toJson(scores);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -142,7 +142,7 @@ public class Scores {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeScore);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeScore);
     }
 
     /**
