@@ -58,9 +58,39 @@ public class Scores {
      * @return Response object with a list of Score objects matching the filter criteria
      * @throws Exception
      */
-    public static Response<ArrayList<Score>> GetScoresByExternalRefId(Connection connection, String externalScoreRefId) throws Exception {
+    public static Response<ArrayList<Score>> GetScoresByScoreRefId(Connection connection, String externalScoreRefId) throws Exception {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "scoreRefId=" + externalScoreRefId);
+
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+    }
+
+    /**
+     * This shows how a filter can be used to get records matching the filter criteria.
+     *
+     * @param connection          The http connection handler
+     * @param externalMemberRefId The parameter to filter the resultset by.
+     * @return Response object with a list of Score objects matching the filter criteria
+     * @throws Exception
+     */
+    public static Response<ArrayList<Score>> GetScoresByMemberRefId(Connection connection, String externalMemberRefId) throws Exception {
+
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "memberRefId=" + externalMemberRefId);
+
+        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
+    }
+
+    /**
+     * This shows how a filter can be used to get records matching the filter criteria.
+     *
+     * @param connection          The http connection handler
+     * @param externalGameRefId The parameter to filter the resultset by.
+     * @return Response object with a list of Score objects matching the filter criteria
+     * @throws Exception
+     */
+    public static Response<ArrayList<Score>> GetScoresByGameRefId(Connection connection, String externalGameRefId) throws Exception {
+
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "gameRefId=" + externalGameRefId);
 
         return Json.toResponsefromConnectionResultWrapper(out, responseTypeListScores);
     }

@@ -31,15 +31,23 @@ abstract public class ScoresExamples extends Common{
             Response<ArrayList<Score>> scores = Scores.GetListOfAllMyScores(connection);
             printErrorsFromResponse(scores);
 
-            // 4. Get a list of scores based on my external reference id.
-            Response<ArrayList<Score>> scoresByMyId = Scores.GetScoresByExternalRefId(connection, "-1");
-            printErrorsFromResponse(scoresByMyId);
+            // 4. Get a list of scores based on my external score reference id.
+            Response<ArrayList<Score>> scoresByScoreRefId = Scores.GetScoresByScoreRefId(connection, "-1");
+            printErrorsFromResponse(scoresByScoreRefId);
 
-            // 5. Allow the remote system to propagate the data to the edge nodes
+            // 5. Get a list of scores based on my external member reference id.
+            Response<ArrayList<Score>> scoresBymemberRefId = Scores.GetScoresByMemberRefId(connection, "-1");
+            printErrorsFromResponse(scoresBymemberRefId);
+
+            // 6. Get a list of scores based on my external game reference id.
+            Response<ArrayList<Score>> scoresByGameRefId = Scores.GetScoresByGameRefId(connection, "-1");
+            printErrorsFromResponse(scoresByGameRefId);
+
+            // 7. Allow the remote system to propagate the data to the edge nodes
             Thread.sleep(200);
 
-            // 6. Delete the records we just inserted
-            //List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByMyId);
+            // 8. Delete the records we just inserted
+            //List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByScoreRefId);
 
         } catch (Exception e) {
             e.printStackTrace();
