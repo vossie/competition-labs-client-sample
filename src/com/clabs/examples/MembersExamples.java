@@ -28,16 +28,20 @@ abstract public class MembersExamples extends Common {
                 printErrorsFromResponse(insertedMemberResponse);
             }
 
+
             /** 2. Allow the remote system to propagate the data to the edge nodes */
             Thread.sleep(200);
+
 
             /** 3. Get all the members I have uploaded */
             Response<ArrayList<Member>> members = Members.GetListOfAllMyMembers(connection);
             printErrorsFromResponse(members);
 
+
              /** 4. Get a list of members based on my external reference id */
             Response<ArrayList<Member>> membersByMyId = Members.GetMembersByExternalRefId(connection,"-1");
             printErrorsFromResponse(membersByMyId);
+
 
             /** 5. Get a list of members based on my external reference id */
             ArrayList<String> groupsToFilterBy = new ArrayList<String>();
@@ -46,16 +50,19 @@ abstract public class MembersExamples extends Common {
             Response<ArrayList<Member>> membersByGroups = Members.GetMembersByGroups(connection,groupsToFilterBy);
             printErrorsFromResponse(membersByGroups);
 
-             /** 6. Update existing records */
+
+            /** 6. Update existing records */
             for (int i=0; i<membersByMyId.data.size(); i++){
                 Response r = Members.UpdateMemberById(connection, membersByMyId.data.get(i).setName("Name" + i));
                 printErrorsFromResponse(r);
             }
 
-             /** 7. Allow the remote system to propagate the data to the edge nodes */
+
+            /** 7. Allow the remote system to propagate the data to the edge nodes */
             Thread.sleep(200);
 
-             /** 7. Delete the records we just inserted */
+
+            /** 7. Delete the records we just inserted */
             //List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
 
         } catch (Exception e) {
