@@ -63,6 +63,32 @@ public class Members {
     }
 
     /**
+     * This shows how a filter can be used to get records matching the filter criteria.
+     * Filter values can be chained by comma separating the filter values, example; ?groups=VIP-Test,VIP-Test2
+     * The result will contain all values that match at least one of the filter values.
+     * @param connection The http connection handler
+     * @param groups The parameter to filter the resultset by.
+     * @return Response object with a list of Member objects matching the filter criteria
+     * @throws Exception
+     */
+    public static Response<ArrayList<Member>> GetMembersByGroups(Connection connection, ArrayList<String> groups) throws Exception {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("groups=");
+
+        for (int i = 0; i < groups.size(); i++) {
+            stringBuilder.append(groups.get(i));
+
+            if((i+1) < groups.size())
+                stringBuilder.append(",");
+        }
+
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, stringBuilder.toString());
+
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
+    }
+
+    /**
      * Shows how a single member object can be added to your space.
      * @param connection The http connection handler
      * @param member The member to add to your space
