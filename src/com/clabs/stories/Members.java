@@ -72,7 +72,7 @@ public class Members {
      * @return Response object with a list of Member objects matching the filter criteria
      * @throws Exception
      */
-    public static Response<ArrayList<Member>> GetMembersByGroups(Connection connection, ArrayList<String> groups) throws Exception {
+    public static Response<ArrayList<Member>> GetMembersByGroups(Connection connection, List<String> groups) throws Exception {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, Util.listToCommaSeparatedList("groups=",groups));
         return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
