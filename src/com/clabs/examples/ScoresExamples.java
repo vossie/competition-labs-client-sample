@@ -4,10 +4,9 @@ import com.clabs.models.Response;
 import com.clabs.models.Score;
 import com.clabs.stories.Scores;
 import com.clabs.utils.Connection;
+import com.clabs.utils.DateTime;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 abstract public class ScoresExamples extends Common{
 
@@ -19,7 +18,7 @@ abstract public class ScoresExamples extends Common{
                     .setGameRefId("-1")
                     .setMemberRefId("-1")
                     .setSourceValue(2.5f)
-                    .setTransactionTimestamp(new Date(LocalDate.now().toEpochDay()));
+                    .setTransactionTimestamp(DateTime.now());
 
             Response<Boolean> insertedScoreResponse = Scores.InsertScore(connection, sampleScore);
             printErrorsFromResponse(insertedScoreResponse);
