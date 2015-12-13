@@ -1,10 +1,11 @@
 package com.clabs.stories;
 
+import com.clabs.models.Member;
+import com.clabs.models.Response;
 import com.clabs.utils.Connection;
 import com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.utils.Json;
-import com.clabs.models.Member;
-import com.clabs.models.Response;
+import com.clabs.utils.Util;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -73,18 +74,7 @@ public class Members {
      */
     public static Response<ArrayList<Member>> GetMembersByGroups(Connection connection, ArrayList<String> groups) throws Exception {
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("groups=");
-
-        for (int i = 0; i < groups.size(); i++) {
-            stringBuilder.append(groups.get(i));
-
-            if((i+1) < groups.size())
-                stringBuilder.append(",");
-        }
-
-        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, stringBuilder.toString());
-
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, Util.listToCommaSeparatedList("groups=",groups));
         return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
