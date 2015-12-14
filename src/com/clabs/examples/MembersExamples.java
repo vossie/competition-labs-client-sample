@@ -89,7 +89,7 @@ abstract public class MembersExamples extends Common {
 
                 for (int i = 0; i < countOfRowsToGenerate; i ++) {
                     fileWriter
-                            .append("my-custom-ref-" + i).append(',')
+                            .append("my-custom-member-ref-" + i).append(',')
                             .append("Member-Display-Name-" + i).append(',')
                             .append("my-customer-segment-" + ((i<5)? "VIP" : "BigSpender") ).append('\n')
                             .flush();
