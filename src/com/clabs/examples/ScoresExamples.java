@@ -4,12 +4,9 @@ import com.clabs.models.Response;
 import com.clabs.models.Score;
 import com.clabs.stories.Scores;
 import com.clabs.utils.Connection;
-import com.clabs.utils.ConnectionResultWrapper;
+import com.clabs.utils.DateTime;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 abstract public class ScoresExamples extends Common{
 
@@ -21,7 +18,7 @@ abstract public class ScoresExamples extends Common{
                     .setGameRefId("-1")
                     .setMemberRefId("-1")
                     .setSourceValue(2.5f)
-                    .setTransactionTimestamp(new Date(LocalDate.now().toEpochDay()));
+                    .setTransactionTimestamp(DateTime.now());
 
             Response<Boolean> insertedScoreResponse = Scores.InsertScore(connection, sampleScore);
             printErrorsFromResponse(insertedScoreResponse);
@@ -33,15 +30,23 @@ abstract public class ScoresExamples extends Common{
             Response<ArrayList<Score>> scores = Scores.GetListOfAllMyScores(connection);
             printErrorsFromResponse(scores);
 
-            // 4. Get a list of scores based on my external reference id.
-            Response<ArrayList<Score>> scoresByMyId = Scores.GetScoresByExternalRefId(connection, "-1");
-            printErrorsFromResponse(scoresByMyId);
+            // 4. Get a list of scores based on my external score reference id.
+            Response<ArrayList<Score>> scoresByScoreRefId = Scores.GetScoresByScoreRefId(connection, "-1");
+            printErrorsFromResponse(scoresByScoreRefId);
 
-            // 5. Allow the remote system to propagate the data to the edge nodes
+            // 5. Get a list of scores based on my external member reference id.
+            Response<ArrayList<Score>> scoresBymemberRefId = Scores.GetScoresByMemberRefId(connection, "-1");
+            printErrorsFromResponse(scoresBymemberRefId);
+
+            // 6. Get a list of scores based on my external game reference id.
+            Response<ArrayList<Score>> scoresByGameRefId = Scores.GetScoresByGameRefId(connection, "-1");
+            printErrorsFromResponse(scoresByGameRefId);
+
+            // 7. Allow the remote system to propagate the data to the edge nodes
             Thread.sleep(200);
 
-            // 6. Delete the records we just inserted
-            List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByMyId);
+            // 8. Delete the records we just inserted
+            //List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByScoreRefId);
 
         } catch (Exception e) {
             e.printStackTrace();

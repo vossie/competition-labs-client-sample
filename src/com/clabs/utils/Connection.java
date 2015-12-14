@@ -60,7 +60,12 @@ public class Connection {
         }
 
         URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        HttpURLConnection con;
+
+        if(url.startsWith("https"))
+            con = (HttpsURLConnection) obj.openConnection();
+        else
+            con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
         con.setRequestMethod(method);
@@ -68,6 +73,7 @@ public class Connection {
         //add request header
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("X-API-KEY",  apiKey);
+        con.setRequestProperty("Accept-Encoding", "application/json");
 
         int responseCode = con.getResponseCode();
         System.out.println("\n[Sending] '"+method+"' request to URL : " + url);
@@ -109,8 +115,14 @@ public class Connection {
     // HTTP send with body
     public ConnectionResultWrapper sendWithBody(String method, String resourcePath, String body) throws Exception {
 
-        URL obj = new URL(toUrl(resourcePath));
-        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+        String url = toUrl(resourcePath);
+        URL obj = new URL(url);
+        HttpURLConnection con;
+
+        if(url.startsWith("https"))
+            con = (HttpsURLConnection) obj.openConnection();
+        else
+            con = (HttpURLConnection) obj.openConnection();
 
         con.setRequestMethod(method);
 
@@ -119,6 +131,7 @@ public class Connection {
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
         con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Accept-Encoding", "application/json");
         con.setRequestProperty("Content-Length", Integer.toString(body.length()));
 
         // Send request

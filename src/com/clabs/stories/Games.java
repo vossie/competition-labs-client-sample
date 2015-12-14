@@ -32,7 +32,7 @@ public class Games {
         Response<ArrayList<Game>> count = GetACountOfAllGames(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListGames);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Games {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListGames);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Games {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "gameRefId="+externalGameRefId);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListGames);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListGames);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Games {
         String body = Json.GSON.toJson(games);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Games {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeGame);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeGame);
     }
 
     /**

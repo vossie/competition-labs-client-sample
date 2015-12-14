@@ -1,10 +1,11 @@
 package com.clabs.stories;
 
+import com.clabs.models.Member;
+import com.clabs.models.Response;
 import com.clabs.utils.Connection;
 import com.clabs.utils.ConnectionResultWrapper;
 import com.clabs.utils.Json;
-import com.clabs.models.Member;
-import com.clabs.models.Response;
+import com.clabs.utils.Util;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -32,7 +33,7 @@ public class Members {
         Response<ArrayList<Member>> count = GetACountOfAllMembers(connection);
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, count.getTotalRecordsFound());
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -45,7 +46,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, 0, 0);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -59,7 +60,22 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, "memberRefId="+externalMemberRefId);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeListMembers);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
+    }
+
+    /**
+     * This shows how a filter can be used to get records matching the filter criteria.
+     * Filter values can be chained by comma separating the filter values, example; ?groups=VIP-Test,VIP-Test2
+     * The result will contain all values that match at least one of the filter values.
+     * @param connection The http connection handler
+     * @param groups The parameter to filter the resultset by.
+     * @return Response object with a list of Member objects matching the filter criteria
+     * @throws Exception
+     */
+    public static Response<ArrayList<Member>> GetMembersByGroups(Connection connection, List<String> groups) throws Exception {
+
+        ConnectionResultWrapper out = connection.sendGet(RESOURCE_PATH, Util.listToCommaSeparatedList("groups=",groups));
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeListMembers);
     }
 
     /**
@@ -89,7 +105,7 @@ public class Members {
         String body = Json.GSON.toJson(members);
         ConnectionResultWrapper out = connection.sendPost(RESOURCE_PATH, body);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeBoolean);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeBoolean);
     }
 
     /**
@@ -106,7 +122,7 @@ public class Members {
 
         ConnectionResultWrapper out = connection.sendPut(resourcePath, json);
 
-        return Json.toResponsefromConnectionResultWrapper(out, responseTypeMember);
+        return Json.toResponseFromConnectionResultWrapper(out, responseTypeMember);
     }
 
     /**

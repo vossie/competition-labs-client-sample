@@ -10,7 +10,7 @@ public class Json {
 
     public final static Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX").create();
 
-    public final static <A> Response<A> toResponsefromConnectionResultWrapper(ConnectionResultWrapper connectionResultWrapper, Type type) {
+    public final static <A> Response<A> toResponseFromConnectionResultWrapper(ConnectionResultWrapper connectionResultWrapper, Type type) {
         return (connectionResultWrapper.isJson())
                 ? (Response<A>) Json.GSON.fromJson(connectionResultWrapper.getBody(), type)
                 : (Response<A>) nonJson(connectionResultWrapper);
