@@ -1,7 +1,7 @@
-import com.clabs.utils.Connection;
 import com.clabs.examples.GamesExamples;
 import com.clabs.examples.MembersExamples;
 import com.clabs.examples.ScoresExamples;
+import com.clabs.utils.Connection;
 
 public class Main {
 
@@ -20,5 +20,11 @@ public class Main {
         MembersExamples.example(HTTP_CONNECTION);
 
         ScoresExamples.example(HTTP_CONNECTION);
+
+        MembersExamples.generateExampleCSV();
+
+        GamesExamples.generateExampleCSV();
+
+        ScoresExamples.generateExampleCSV();
     }
 }

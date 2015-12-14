@@ -5,6 +5,8 @@ import com.clabs.models.Response;
 import com.clabs.stories.Members;
 import com.clabs.utils.Connection;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,7 @@ abstract public class MembersExamples extends Common {
             printErrorsFromResponse(members);
 
 
-             /** 4. Get a list of members based on my external reference id */
+            /** 4. Get a list of members based on my external reference id */
             Response<ArrayList<Member>> membersByMyId = Members.GetMembersByExternalRefId(connection,"-1");
             printErrorsFromResponse(membersByMyId);
 
@@ -66,6 +68,35 @@ abstract public class MembersExamples extends Common {
             //List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void generateExampleCSV() {
+
+        String ColumnHeader1 = "memberRefId";
+        String ColumnHeader2 = "name";
+        String ColumnHeader3 = "group";
+        int countOfRowsToGenerate = 10000;
+
+        try {
+                FileWriter fileWriter = new FileWriter("export-members-sample.csv");
+
+                fileWriter
+                        .append(ColumnHeader1).append(',')
+                        .append(ColumnHeader2).append(',')
+                        .append(ColumnHeader3).append('\n');
+
+                for (int i = 0; i < countOfRowsToGenerate; i ++) {
+                    fileWriter
+                            .append("my-custom-ref-" + i).append(',')
+                            .append("Member-Display-Name-" + i).append(',')
+                            .append("my-customer-segment-" + ((i<5)? "VIP" : "BigSpender") ).append('\n')
+                            .flush();
+                }
+
+                fileWriter.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

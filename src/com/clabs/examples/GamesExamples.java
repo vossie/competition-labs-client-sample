@@ -5,6 +5,8 @@ import com.clabs.models.Response;
 import com.clabs.stories.Games;
 import com.clabs.utils.Connection;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 abstract public class GamesExamples extends Common {
@@ -51,4 +53,43 @@ abstract public class GamesExamples extends Common {
             e.printStackTrace();
         }
     }
+
+
+    public static void generateExampleCSV() {
+
+        String ColumnHeader1 = "gameRefId";
+        String ColumnHeader2 = "name";
+        String ColumnHeader3 = "gameType";
+        String ColumnHeader4 = "pointsStyle";
+        String ColumnHeader5 = "adjustmentFactor";
+        int countOfRowsToGenerate = 10000;
+
+        float adjustmentFactor = 1.0f;
+
+        try {
+            FileWriter fileWriter = new FileWriter("export-games-sample.csv");
+
+            fileWriter
+                    .append(ColumnHeader1).append(',')
+                    .append(ColumnHeader2).append(',')
+                    .append(ColumnHeader3).append(',')
+                    .append(ColumnHeader4).append(',')
+                    .append(ColumnHeader5).append('\n');
+
+            for (int i = 0; i < countOfRowsToGenerate; i ++) {
+                fileWriter
+                        .append("my-custom-game-ref-" + i).append(',')
+                        .append("game-Name-" + i).append(',')
+                        .append("game-Type-" + ((i%2 ==0 )? "Slots" : "Cards") ).append(',')
+                        .append((i%2 ==0 )? "HighestWins" : "LowestWins" ).append(',')
+                        .append(String.valueOf(adjustmentFactor)).append('\n')
+                        .flush();
+            }
+
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

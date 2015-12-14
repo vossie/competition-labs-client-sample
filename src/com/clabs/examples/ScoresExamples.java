@@ -6,7 +6,10 @@ import com.clabs.stories.Scores;
 import com.clabs.utils.Connection;
 import com.clabs.utils.DateTime;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 abstract public class ScoresExamples extends Common{
 
@@ -49,6 +52,42 @@ abstract public class ScoresExamples extends Common{
             //List<ConnectionResultWrapper> deletedResponse = Scores.PermanentlyDeleteListOfScores(connection, scoresByScoreRefId);
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void generateExampleCSV() {
+
+        String ColumnHeader1 = "memberRefId";
+        String ColumnHeader2 = "gameRefId";
+        String ColumnHeader3 = "scoreRefId";
+        String ColumnHeader4 = "sourceValue";
+        String ColumnHeader5 = "transactionTimestamp";
+        int countOfRowsToGenerate = 10;
+
+        try {
+            FileWriter fileWriter = new FileWriter("export-scores-sample.csv");
+
+            fileWriter
+                    .append(ColumnHeader1).append(',')
+                    .append(ColumnHeader2).append(',')
+                    .append(ColumnHeader3).append(',')
+                    .append(ColumnHeader4).append(',')
+                    .append(ColumnHeader5).append('\n');
+
+            for (int i = 0; i < countOfRowsToGenerate; i ++) {
+
+                fileWriter
+                        .append("my-custom-member-ref-" + i).append(',')
+                        .append("my-custom-game-ref-" + i).append(',')
+                        .append("my-custom-score-ref-" + i).append(',')
+                        .append(String.valueOf(new Random().nextInt(1000)/100.5)).append(',') // generate random source values for testing
+                        .append(DateTime.dateMinusMillisAsString(10000)).append('\n')
+                        .flush();
+            }
+
+            fileWriter.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
