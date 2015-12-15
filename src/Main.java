@@ -23,7 +23,7 @@ public class Main {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.print("Enter an number:\n1 - Run the API examples\n2 - To generate sample VCS files\n> ");
+            System.out.print("Enter a number:\n1 - Run the API examples\n2 - To generate sample CSV files\n> ");
             int i = Integer.parseInt(br.readLine());
 
             if(i==1) {
