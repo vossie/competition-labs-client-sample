@@ -3,6 +3,10 @@ import com.clabs.examples.MembersExamples;
 import com.clabs.examples.ScoresExamples;
 import com.clabs.utils.Connection;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
 
     public static final String  SPACE_NAME  = "REPLACE-ME-WITH-YOUR-SPACE-NAME";
@@ -15,16 +19,43 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GamesExamples.example(HTTP_CONNECTION);
+        try {
 
-        MembersExamples.example(HTTP_CONNECTION);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        ScoresExamples.example(HTTP_CONNECTION);
+            System.out.print("Enter an number:\n1 - to run the API example\n2 - To generate sample VCS files\n> ");
+            int i = Integer.parseInt(br.readLine());
 
-        MembersExamples.generateExampleCSV();
+            if(i==1) {
+                System.out.print("[START] Running API examples.");
 
-        GamesExamples.generateExampleCSV();
+                GamesExamples.example(HTTP_CONNECTION);
 
-        ScoresExamples.generateExampleCSV();
+                MembersExamples.example(HTTP_CONNECTION);
+
+                ScoresExamples.example(HTTP_CONNECTION);
+
+                System.out.print("[COMPLETE] Running API examples.");
+
+            }
+            else if (i==2){
+                System.out.print("[START] Example CSV generation.");
+
+                MembersExamples.generateExampleCSV();
+
+                GamesExamples.generateExampleCSV();
+
+                ScoresExamples.generateExampleCSV();
+
+                System.out.print("[COMPLETE] Example CSV generation.");
+            }
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch(NumberFormatException nfe){
+            System.err.println("Invalid Format!");
+        }
     }
 }
