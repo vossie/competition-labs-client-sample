@@ -54,6 +54,15 @@ abstract public class GamesExamples extends Common {
         }
     }
 
+    public static void flushAll(Connection connection) {
+        try {
+            Response<ArrayList<Game>> games = Games.GetListOfAllMyGames(connection);
+            Games.PermanentlyDeleteListOfGames(connection, games);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void generateExampleCSV() {
 

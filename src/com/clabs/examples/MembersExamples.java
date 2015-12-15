@@ -72,6 +72,16 @@ abstract public class MembersExamples extends Common {
         }
     }
 
+    public static void flushAll(Connection connection) {
+        try {
+            Response<ArrayList<Member>> members = Members.GetListOfAllMyMembers(connection);
+            Members.PermanentlyDeleteListOfMembers(connection, members);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void generateExampleCSV() {
 
         String ColumnHeader1 = "memberRefId";

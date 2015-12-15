@@ -13,7 +13,7 @@ public class Main {
     public static final String  API_KEY     = "REPLACE-ME-WITH-YOUR-API-KEY";
 
     public static final String  ROOT_URI    = "https://app.competitionlabs.com";
-    public static final Integer PORT        = 9443;
+    public static final Integer PORT        = 9000;
 
     public static final Connection HTTP_CONNECTION = new Connection(ROOT_URI, SPACE_NAME, API_KEY, PORT);
 
@@ -23,7 +23,14 @@ public class Main {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.print("Enter a number:\n1 - Run the API examples\n2 - To generate sample CSV files\n> ");
+            System.out.print(
+                    "Enter a number:\n" +
+                    "1 - Run the API examples\n" +
+                    "2 - To generate sample CSV files\n" +
+                    "3 - Flush all data from members, scores and, games\n" +
+                    "> "
+            );
+
             int i = Integer.parseInt(br.readLine());
 
             if(i==1) {
@@ -48,6 +55,17 @@ public class Main {
                 ScoresExamples.generateExampleCSV();
 
                 System.out.print("[COMPLETE] Example CSV generation.");
+            }
+            else if (i==3){
+                System.out.print("[START] Flush all data.");
+
+                MembersExamples.flushAll(HTTP_CONNECTION);
+
+                GamesExamples.flushAll(HTTP_CONNECTION);
+
+                ScoresExamples.flushAll(HTTP_CONNECTION);
+
+                System.out.print("[COMPLETE] Flush all data.");
             }
             else {
                 System.out.print("[ERROR] Unknown selection, exiting.");
