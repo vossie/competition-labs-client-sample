@@ -64,7 +64,7 @@ abstract public class MembersExamples extends Common {
             Thread.sleep(200);
 
 
-            /** 7. Delete the records we just inserted */
+            /** 8. Delete the records we just inserted */
             //List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
 
         } catch (Exception e) {
