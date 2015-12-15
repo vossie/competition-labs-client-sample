@@ -13,7 +13,7 @@ public class Main {
     public static final String  API_KEY     = "REPLACE-ME-WITH-YOUR-API-KEY";
 
     public static final String  ROOT_URI    = "https://app.competitionlabs.com";
-    public static final Integer PORT        = 9000;
+    public static final Integer PORT        = 9443;
 
     public static final Connection HTTP_CONNECTION = new Connection(ROOT_URI, SPACE_NAME, API_KEY, PORT);
 
@@ -34,7 +34,7 @@ public class Main {
             int i = Integer.parseInt(br.readLine());
 
             if(i==1) {
-                System.out.print("[START] Running the API examples.");
+                System.out.print("[START] Running the API examples.\n");
 
                 GamesExamples.example(HTTP_CONNECTION);
 
@@ -42,11 +42,11 @@ public class Main {
 
                 ScoresExamples.example(HTTP_CONNECTION);
 
-                System.out.print("[COMPLETE] Running the API examples.");
+                System.out.print("[COMPLETE] Running the API examples.\n");
 
             }
             else if (i==2){
-                System.out.print("[START] Example CSV generation.");
+                System.out.print("[START] Example CSV generation.\n");
 
                 MembersExamples.generateExampleCSV();
 
@@ -54,10 +54,10 @@ public class Main {
 
                 ScoresExamples.generateExampleCSV();
 
-                System.out.print("[COMPLETE] Example CSV generation.");
+                System.out.print("[COMPLETE] Example CSV generation.\n");
             }
             else if (i==3){
-                System.out.print("[START] Flush all data.");
+                System.out.print("[START] Flush all data.\n");
 
                 MembersExamples.flushAll(HTTP_CONNECTION);
 
@@ -65,10 +65,10 @@ public class Main {
 
                 ScoresExamples.flushAll(HTTP_CONNECTION);
 
-                System.out.print("[COMPLETE] Flush all data.");
+                System.out.print("[COMPLETE] Flush all data.\n");
             }
             else {
-                System.out.print("[ERROR] Unknown selection, exiting.");
+                System.out.print("[ERROR] Unknown selection, exiting.\n");
             }
 
         }
@@ -76,7 +76,7 @@ public class Main {
             e.printStackTrace();
         }
         catch(NumberFormatException nfe){
-            System.err.println("Invalid Format!");
+            System.err.println("Invalid Format!\n");
         }
     }
 }
