@@ -49,6 +49,9 @@ public class Main {
 
                 System.out.print("[COMPLETE] Example CSV generation.");
             }
+            else {
+                System.out.print("[ERROR] Unknown selection, exiting.");
+            }
 
         }
         catch (IOException e) {
