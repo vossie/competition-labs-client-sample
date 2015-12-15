@@ -23,11 +23,11 @@ public class Main {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.print("Enter an number:\n1 - to run the API example\n2 - To generate sample VCS files\n> ");
+            System.out.print("Enter an number:\n1 - Run the API examples\n2 - To generate sample VCS files\n> ");
             int i = Integer.parseInt(br.readLine());
 
             if(i==1) {
-                System.out.print("[START] Running API examples.");
+                System.out.print("[START] Running the API examples.");
 
                 GamesExamples.example(HTTP_CONNECTION);
 
@@ -35,7 +35,7 @@ public class Main {
 
                 ScoresExamples.example(HTTP_CONNECTION);
 
-                System.out.print("[COMPLETE] Running API examples.");
+                System.out.print("[COMPLETE] Running the API examples.");
 
             }
             else if (i==2){
