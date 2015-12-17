@@ -12,8 +12,6 @@ final public class Game {
 
     public Integer accountId;
 
-    public String pointsStyle;
-
     public String description;
 
     public Float adjustmentFactor;
@@ -33,11 +31,6 @@ final public class Game {
 
     public Game setGameType(String gameType) {
         this.gameType = gameType;
-        return this;
-    }
-
-    public Game setPointsStyle(String pointsStyle) {
-        this.pointsStyle = pointsStyle;
         return this;
     }
 
