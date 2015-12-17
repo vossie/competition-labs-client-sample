@@ -66,7 +66,7 @@ abstract public class GamesExamples extends Common {
     public static void generateExampleCSV() {
 
         String ColumnHeader1 = "gameRefId";
-        String ColumnHeader2 = "name";
+        String ColumnHeader2 = "gameName";
         String ColumnHeader3 = "gameType";
         String ColumnHeader4 = "pointsStyle";
         String ColumnHeader5 = "adjustmentFactor";
