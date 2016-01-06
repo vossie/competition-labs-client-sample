@@ -58,10 +58,9 @@ abstract public class GamesExamples extends Common {
     public static void generateExampleCSV() {
 
         String ColumnHeader1 = "gameRefId";
-        String ColumnHeader2 = "name";
+        String ColumnHeader2 = "gameName";
         String ColumnHeader3 = "gameType";
-        String ColumnHeader4 = "pointsStyle";
-        String ColumnHeader5 = "adjustmentFactor";
+        String ColumnHeader4 = "adjustmentFactor";
         int countOfRowsToGenerate = 10000;
 
         float adjustmentFactor = 1.0f;
@@ -73,15 +72,13 @@ abstract public class GamesExamples extends Common {
                     .append(ColumnHeader1).append(',')
                     .append(ColumnHeader2).append(',')
                     .append(ColumnHeader3).append(',')
-                    .append(ColumnHeader4).append(',')
-                    .append(ColumnHeader5).append('\n');
+                    .append(ColumnHeader4).append('\n');
 
             for (int i = 0; i < countOfRowsToGenerate; i ++) {
                 fileWriter
                         .append("my-custom-game-ref-" + i).append(',')
                         .append("game-Name-" + i).append(',')
                         .append("game-Type-" + ((i%2 ==0 )? "Slots" : "Cards") ).append(',')
-                        .append((i%2 ==0 )? "HighestWins" : "LowestWins" ).append(',')
                         .append(String.valueOf(adjustmentFactor)).append('\n')
                         .flush();
             }
