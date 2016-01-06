@@ -56,6 +56,15 @@ abstract public class ScoresExamples extends Common{
         }
     }
 
+    public static void flushAll(Connection connection) {
+        try {
+            Response<ArrayList<Score>> scores = Scores.GetListOfAllMyScores(connection);
+            Scores.PermanentlyDeleteListOfScores(connection, scores);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void generateExampleCSV() {
 
         String ColumnHeader1 = "memberRefId";
@@ -63,7 +72,7 @@ abstract public class ScoresExamples extends Common{
         String ColumnHeader3 = "scoreRefId";
         String ColumnHeader4 = "sourceValue";
         String ColumnHeader5 = "transactionTimestamp";
-        int countOfRowsToGenerate = 10;
+        int countOfRowsToGenerate = 10000;
 
         try {
             FileWriter fileWriter = new FileWriter("export-scores-sample.csv");

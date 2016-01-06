@@ -20,8 +20,7 @@ abstract public class GamesExamples extends Common {
                     .setName("Test Game")
                     .setDescription("Test game")
                     .setGameType("slot")
-                    .setAdjustmentFactor(2f)
-                    .setPointsStyle("HighestWins");
+                    .setAdjustmentFactor(2f);
 
             Response insertedGamesResponse = Games.InsertGame(connection, sampleGame);
             printErrorsFromResponse(insertedGamesResponse);
@@ -49,6 +48,15 @@ abstract public class GamesExamples extends Common {
             // 7. Delete the records we just inserted
             //List<ConnectionResultWrapper> deletedResponse = Games.PermanentlyDeleteListOfGames(connection, gamesByMyId);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void flushAll(Connection connection) {
+        try {
+            Response<ArrayList<Game>> games = Games.GetListOfAllMyGames(connection);
+            Games.PermanentlyDeleteListOfGames(connection, games);
         } catch (Exception e) {
             e.printStackTrace();
         }

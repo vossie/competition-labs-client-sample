@@ -64,8 +64,18 @@ abstract public class MembersExamples extends Common {
             Thread.sleep(200);
 
 
-            /** 7. Delete the records we just inserted */
+            /** 8. Delete the records we just inserted */
             //List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void flushAll(Connection connection) {
+        try {
+            Response<ArrayList<Member>> members = Members.GetListOfAllMyMembers(connection);
+            Members.PermanentlyDeleteListOfMembers(connection, members);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +85,7 @@ abstract public class MembersExamples extends Common {
     public static void generateExampleCSV() {
 
         String ColumnHeader1 = "memberRefId";
-        String ColumnHeader2 = "name";
+        String ColumnHeader2 = "displayName";
         String ColumnHeader3 = "group";
         int countOfRowsToGenerate = 10000;
 
@@ -89,7 +99,7 @@ abstract public class MembersExamples extends Common {
 
                 for (int i = 0; i < countOfRowsToGenerate; i ++) {
                     fileWriter
-                            .append("my-custom-member-ref-" + i).append(',')
+                            .append("my-custom-member-re2f-" + i).append(',')
                             .append("Member-Display-Name-" + i).append(',')
                             .append("my-customer-segment-" + ((i<5)? "VIP" : "BigSpender") ).append('\n')
                             .flush();
