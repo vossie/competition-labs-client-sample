@@ -85,7 +85,7 @@ abstract public class MembersExamples extends Common {
     public static void generateExampleCSV() {
 
         String ColumnHeader1 = "memberRefId";
-        String ColumnHeader2 = "displayName";
+        String ColumnHeader2 = "name";
         String ColumnHeader3 = "group";
         int countOfRowsToGenerate = 10000;
 
