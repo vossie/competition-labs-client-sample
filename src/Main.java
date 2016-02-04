@@ -9,11 +9,11 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-    public static final String  SPACE_NAME  = "REPLACE-ME-WITH-YOUR-SPACE-NAME";
-    public static final String  API_KEY     = "REPLACE-ME-WITH-YOUR-API-KEY";
+    public static final String  SPACE_NAME  = "carel";
+    public static final String  API_KEY     = "761ca55a4fde402b8a6f7cf22e570fd3";
 
-    public static final String  ROOT_URI    = "https://app.competitionlabs.com";
-    public static final Integer PORT        = 443;
+    public static final String  ROOT_URI    = "http://10.0.1.13";
+    public static final Integer PORT        = 9000;
 
     public static final Connection HTTP_CONNECTION = new Connection(ROOT_URI, SPACE_NAME, API_KEY, PORT);
 
@@ -28,6 +28,7 @@ public class Main {
                     "1 - Run the API examples\n" +
                     "2 - To generate sample CSV files\n" +
                     "3 - Flush all data from members, scores and, games\n" +
+                    "4 - Hammer the scores API\n" +
                     "> "
             );
 
@@ -66,6 +67,13 @@ public class Main {
                 ScoresExamples.flushAll(HTTP_CONNECTION);
 
                 System.out.print("[COMPLETE] Flush all data.\n");
+            }
+            else if (i==4){
+                System.out.print("[START] Hammer the API.\n");
+
+                ScoresExamples.example(HTTP_CONNECTION);
+
+                System.out.print("[COMPLETE] Hammer the API..\n");
             }
             else {
                 System.out.print("[ERROR] Unknown selection, exiting.\n");

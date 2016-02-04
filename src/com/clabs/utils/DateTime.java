@@ -3,7 +3,6 @@ package com.clabs.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class DateTime {
 
@@ -12,10 +11,17 @@ public class DateTime {
         return r;
     }
 
-    public static String dateMinusMillisAsString(int millis) {
-        TimeZone tz = TimeZone.getTimeZone("GMT");
+    public static String nowAsString() {
+//        TimeZone tz = TimeZone.getTimeZone("GMT");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-        df.setTimeZone(tz);
+//        df.setTimeZone(tz);
+        return df.format(new Date(System.currentTimeMillis()));
+    }
+
+    public static String dateMinusMillisAsString(int millis) {
+//        TimeZone tz = TimeZone.getTimeZone("GMT");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+//        df.setTimeZone(tz);
         return df.format(new Date(System.currentTimeMillis() - millis));
 
     }

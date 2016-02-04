@@ -13,6 +13,21 @@ import java.util.Random;
 
 abstract public class ScoresExamples extends Common{
 
+    public static void loadTheApi(Connection connection, int size) throws Exception {
+
+        for (int y = 0; y < size; y++){
+            Score sampleScore = new Score()
+                    .setScoreRefId("-1")
+                    .setGameRefId("-1")
+                    .setMemberRefId("-1")
+                    .setSourceValue(2.5f)
+                    .setTransactionTimestamp(DateTime.now());
+
+            Response<Boolean> insertedScoreResponse = Scores.InsertScore(connection, sampleScore);
+            printErrorsFromResponse(insertedScoreResponse);
+        }
+    }
+
     public static void example(Connection connection) {
         try {
             // 1. Add a new score
@@ -73,6 +88,7 @@ abstract public class ScoresExamples extends Common{
         String ColumnHeader4 = "sourceValue";
         String ColumnHeader5 = "transactionTimestamp";
         int countOfRowsToGenerate = 10000;
+        long scoreRef = System.currentTimeMillis();
 
         try {
             FileWriter fileWriter = new FileWriter("export-scores-sample.csv");
@@ -84,15 +100,19 @@ abstract public class ScoresExamples extends Common{
                     .append(ColumnHeader4).append(',')
                     .append(ColumnHeader5).append('\n');
 
-            for (int i = 0; i < countOfRowsToGenerate; i ++) {
+            for (int i = 0; i < countOfRowsToGenerate/2; i ++) {
+                for (int i2 = 0; i2 < 2; i2 ++) {
+                    scoreRef = scoreRef + 1;
+                    double val = (new Random().nextInt(1000) / 100.5) * 10;
 
-                fileWriter
-                        .append("my-custom-member-ref-" + i).append(',')
-                        .append("my-custom-game-ref-" + i).append(',')
-                        .append("my-custom-score-ref-" + i).append(',')
-                        .append(String.valueOf(new Random().nextInt(1000)/100.5)).append(',') // generate random source values for testing
-                        .append(DateTime.dateMinusMillisAsString(10000)).append('\n')
-                        .flush();
+                    fileWriter
+                            .append("my-custom-member-ref-" + i).append(',')
+                            .append("my-custom-game-ref-100").append(',')
+                            .append("my-custom-score-ref-" + scoreRef).append(',')
+                            .append(String.valueOf(val)).append(',') // generate random source values for testing
+                            .append(DateTime.nowAsString()).append('\n')
+                            .flush();
+                }
             }
 
             fileWriter.close();
