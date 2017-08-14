@@ -150,7 +150,7 @@ public class Members {
      * @return
      * @throws Exception
      */
-    public static ConnectionResultWrapper PermanentlyDeleteAMemberById(Connection connection, int id) throws Exception {
+    public static ConnectionResultWrapper PermanentlyDeleteAMemberById(Connection connection, String id) throws Exception {
         String resourcePath = RESOURCE_PATH + "/" + id;
 
         return connection.sendDelete(resourcePath, "");

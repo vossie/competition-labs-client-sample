@@ -9,7 +9,13 @@ import java.net.URL;
 
 public class Connection {
 
-    public Connection(String rootUri, String spaceName, String apiKey, int port) {
+    private String spaceName;
+    private String rootUri;
+    private String apiKey;
+    private Integer port;
+    private final String USER_AGENT = "Mozilla/5.0";
+
+    public Connection(String rootUri, String spaceName, String apiKey, Integer port) {
 
         this.spaceName=spaceName;
         this.rootUri=rootUri;
@@ -17,15 +23,8 @@ public class Connection {
         this.port=port;
     }
 
-    private String spaceName;
-    private String rootUri;
-    private String apiKey;
-    private int port;
-
-    private final String USER_AGENT = "Mozilla/5.0";
-
     private String toUrl(String resourcePath) {
-        return rootUri + ":" + port + "/api/" + spaceName + "/"+ resourcePath;
+        return (port == null) ? rootUri + "/api/" + spaceName + "/"+ resourcePath : rootUri + ":" + port + "/api/" + spaceName + "/"+ resourcePath;
     }
 
     // HTTP GET request
@@ -55,7 +54,8 @@ public class Connection {
 
         String url = toUrl(resourcePath);
 
-        if(!urlParameters.isEmpty()) {
+
+        if(!(urlParameters.length() == 0)) {
             url = (url.contains("?")) ? url +"&"+ urlParameters :  url + "?" + urlParameters;
         }
 
@@ -71,9 +71,9 @@ public class Connection {
         con.setRequestMethod(method);
 
         //add request header
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("X-API-KEY",  apiKey);
-        con.setRequestProperty("Accept-Encoding", "application/json");
+        con.addRequestProperty("User-Agent", USER_AGENT);
+        con.addRequestProperty("X-API-KEY",  apiKey);
+        con.addRequestProperty("Accept-Encoding", "application/json");
 
         int responseCode = con.getResponseCode();
         System.out.println("\n[Sending] '"+method+"' request to URL : " + url);
