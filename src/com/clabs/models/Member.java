@@ -6,9 +6,9 @@ import java.util.Map;
 
 final public class Member {
 
-    public Integer id;
+    public String id;
 
-    public Integer accountId;
+    public String accountId;
 
     public String memberType;
 

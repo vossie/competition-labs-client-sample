@@ -59,14 +59,6 @@ abstract public class MembersExamples extends Common {
                 printErrorsFromResponse(r);
             }
 
-
-            /** 7. Allow the remote system to propagate the data to the edge nodes */
-            Thread.sleep(200);
-
-
-            /** 8. Delete the records we just inserted */
-            //List<ConnectionResultWrapper> deletedResponse = Members.PermanentlyDeleteListOfMembers(connection, membersByMyId);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
